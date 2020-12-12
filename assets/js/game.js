@@ -4,13 +4,11 @@ var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
-console.log(playerName);
-console.log(playerAttack, playerHealth, playerMoney);
+
 
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
-
 
 //Game States 
 // "WIN" - Plater robot has defeated all enemy-robots
@@ -18,8 +16,9 @@ var enemyAttack = 12;
 
 // fight funcation
 var fight = function(enemyName) {
-  //Alert players that they are starting the round
-  window.alert("Welcome to Robot Gladiators!");
+  
+  //repeat and excute as long as the enemy-robot is alive
+  while(enemyHealth > 0) {
 
   //ask player if they'd like to fight or run
   var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
@@ -39,8 +38,6 @@ var fight = function(enemyName) {
   } else {
     window.alert(enemyName + " still has " + enemyHealth + " health left.");
   }
-
-  
 
   //remove player's health by subtracting the amount set in the enemyAttack variable 
   playerHealth = playerHealth - enemyAttack;
@@ -76,12 +73,20 @@ var fight = function(enemyName) {
   else {
     fight();
   }
-} else {
+}else {
   window.alert("You need to choose a valid option. Try again!");
+  
+  }
 }
-};
+}
+
+  //Alert players that they are starting the round
+  window.alert("Welcome to Robot Gladiators!");
 
 // run fight funcation to start game
 for(var i = 0; i < enemyNames.length; i++) {
-  fight(enemyNames[i]);
+  var pickedEnemyName = enemyNames[i];
+  enemyHealth = 50;
+  //call fight function with enemy-robot
+  fight(pickedEnemyName);
 }
